@@ -100,3 +100,31 @@
     <p>I am the parent component:</p>
     <h2 style="color: #4CAF50;">{{value}}</h2>
   </div>
+
+<h1>Lets learn RxJs now:</h1>
+<h2>Reactive Extensions For JS: external library anything can use: React, Angular</h2>
+<p style="color: #caa8a4; font-size: 20px; font-weight: bold; margin-bottom: 20px;">
+Basically, the way of observing and reacting to the data events as they flow like river in an app.<br><br>
+<li>Observables: Observables acts as data stream, continuously emits data. To use observables you have to subscribe to it. Also you can choose the data you want that being emmitted.</li>
+<li>Can be Asyn or Syn</li>
+<li>this returns the stream of data (data ------ data ------ data)</li>
+  </p>
+ 
+  Observable Streams:
+  <li>User Input (Button click Event)</li>
+    <li> HTTP Request</li>
+    <li>Array and Object</li>
+<br>
+  Observable Handles: (when you subscribe)
+  <li>Data</li>
+  <li>Error</li>
+  <li>Completion Event</li>  
+  <code>.subscribe(<br>
+    (data)=>console.log(data),<br>
+    (error)=>console.log(error),<br>
+    ()=>console.log("Complete"),<br>)</code>
+<div>'all' is the child of Observable component</div>
+
+  <app-observable></app-observable>
+  <app-all></app-all>
+  <app-from-event></app-from-event>
