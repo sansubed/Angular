@@ -1,0 +1,42 @@
+<p style="color: #e74c3c; font-size: 20px; font-weight: bold; margin-bottom: 20px;">
+    Demonstration of Passing Data from Child to Parent Container
+  </p>
+  
+  <ul style="list-style-type: none; padding-left: 0; margin-bottom: 20px;">
+    <li style="background-color: #3498db; color: #fff; font-weight: bold; padding: 10px; border-radius: 5px; margin-bottom: 8px;">
+      Instruction
+    </li>
+  
+    <ol style="margin-left: 20px;">
+      <li style="margin-bottom: 8px;">
+        Create a child component and render it in the main component as an HTML tag to see if that works
+      </li>
+  
+      <li style="margin-bottom: 8px;">
+        Create a function in `parent.ts` and call this function in `parent.html` inside the selector with
+        <code>(functionEvent)="callFunction($event)"</code>
+      </li>
+  
+      <li style="margin-bottom: 8px;">
+        Now inside `child.ts`, use the  at `Output` decorator and pass the name of the event function to it. Instantiate the EventEmitter like
+        <code> at Output() updateValueEvent = new EventEmitter&lt;string&gt;();</code>
+      </li>
+  
+      <li style="margin-bottom: 8px;">
+        Come to `child.html`, create an input box with an ID, and call the function <code>updateValueEvent.emit(id.value)</code>
+      </li>
+  
+      <li style="margin-bottom: 8px;">
+        To display this value in the main component, go to `parent.html`
+      </li>
+    </ol>
+  </ul>
+  
+  
+
+  <form style="max-width: 400px; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <label style="display: block; margin-bottom: 8px; font-weight: bold;">Data from child to Parent:</label>
+    <input type="text" #box style="width: 100%; padding: 10px; margin-bottom: 16px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; transition: border-color 0.3s;">
+    <button style="background-color: #4CAF50; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; transition: background-color 0.3s; " (click)="updateValueEvent.emit(box.value)">Submit</button>
+  </form>
+  
