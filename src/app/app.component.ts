@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ITodoList } from './app';
 import {MemberDataService} from './service/member-data.service';
 import { IUserDesp } from './userDesp';
+import {UsersLogService} from './service/users-log.service'
+import { IToDo } from './todo';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +12,7 @@ import { IUserDesp } from './userDesp';
   styleUrls: ['./app.component.scss'],
   host:{ngSkipHydration:'true'}
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy{
 
   imageWidth: number = 60;
   imageMargin: number = 2;
@@ -20,6 +23,7 @@ export class AppComponent implements OnInit {
   //used in property binding in code
   //get the value from the backend, backend variable
   private _listFilter: string = '';
+  UsersLogService: any;
   get listFilter(): string {
     return this._listFilter;
   }
@@ -126,18 +130,45 @@ this.value = newValue;
 //this is to use the service
 
 members: IUserDesp[] = []; //this has to be the interface type for the data that is coming
-constructor(private memberData:MemberDataService)
-
+userToDos:IToDo[]=[];
+errorMessage:string='';
+sub!:Subscription; //the bang or ! on variable means that we will deal with this later
+constructor(private memberData:MemberDataService, private userTodo:UsersLogService)
 {
-// console.warn("Member data", memberData.getMembers());
-// this.members=memberData.getMembers();
+
 }
+
  //this is the method in the OnInit interface
  ngOnInit(): void {
   console.log('In OnInit');
   this.listFilter = 'true';
   console.warn("Member data", this.memberData.getMembers());
   this.members=this.memberData.getMembers();
+
+  //there are 2 ways to do this
+  //this is from the get call 
+  // this.userTodo.getUsersLog().subscribe((data:IToDo[])=>{
+  //   this.userToDos=data;
+  //   console.log("DATA",data);
+  // })
+
+  //ALTERNATIVELY,
+
+
+ this.sub=this.userTodo.getUsersLog().subscribe({
+  next:(a)=>{this.userToDos=a;
+  console.log("Data from API",a)}, //if there is more line of the code then we can add {}
+  error:(err) =>this.errorMessage = err,
+  
+ })
 }
+
+ngOnDestroy(): void {
+  //Called once, before the instance is destroyed.
+  //Add 'implements OnDestroy' to the class.
+  this.sub.unsubscribe();
+}
+
+
 }
 

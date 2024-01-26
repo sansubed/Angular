@@ -259,36 +259,101 @@
 
       <h1>Service in Angular</h1>
       <li>First <code>ng g service services/footer in your terminal</code></li>
-      <li> on your service.ts file create a method where you have array of objects</li>
-      <li> create a constructor inside the component.ts you would like to use and import the service, eg: 
-       <br> <code>
-          members:any; //this has to be the interface type for the data that is coming<br>
-        constructor(private memberData:MemberDataService)&#123;<br>
-        console.warn("Member data", memberData.members());<br>
-        this.members=memberData.members();&#125;<br>
-        </code> </li>
-        <h2>Alternatively,</h2>
-        These portion of code could be placed in the ngOnInit method:
-        <code>ngOnInit(): void &#123;<br>
-          console.log('In OnInit');<br>
-          this.listFilter = 'true';<br>
-          console.warn("Member data", this.memberData.getMembers());<br>
-          this.members=this.memberData.getMembers();<br>
-          &#123;</code>
-      
-      <li>Now loop over the objects in component.html<br>
-      <code><li *ngFor="let member of members">
-        Name: &#123;&#123;member.name&#125; 
-        Age: &#123;&#123;member.age&#125;
-        Email: &#123;&#123;member.email&#125;
-      </li></code></li>
-      <h1>Demonstration of service class in app.component and footer.component</h1>
+      <li>
+        on your service.ts file create a method where you have array of objects
+      </li>
+      <li>
+        create a constructor inside the component.ts you would like to use and
+        import the service, eg: <br />
+        <code>
+          members:any; //this has to be the interface type for the data that is
+          coming<br />
+          constructor(private memberData:MemberDataService)&#123;<br />
+          console.warn("Member data", memberData.members());<br />
+          this.members=memberData.members();&#125;<br />
+        </code>
+      </li>
+      <h2>Alternatively,</h2>
+      These portion of code could be placed in the ngOnInit method:
+      <code
+        >ngOnInit(): void &#123;<br />
+        console.log('In OnInit');<br />
+        this.listFilter = 'true';<br />
+        console.warn("Member data", this.memberData.getMembers());<br />
+        this.members=this.memberData.getMembers();<br />
+        &#123;</code
+      >
+
+      <li>
+        Now loop over the objects in component.html<br />
+        <code
+          ><li *ngFor="let member of members">
+            Name: &#123;&#123;member.name&#125; Age:
+            &#123;&#123;member.age&#125; Email: &#123;&#123;member.email&#125;
+          </li></code
+        >
+      </li>
+      <h1>
+        Demonstration of service class in app.component and footer.component
+      </h1>
       <ul>
         <li *ngFor="let member of members">
-        Name:  {{ member.name}}
-        Age: {{ member.age}}
-        Email: {{ member.email}}
+          Name: {{ member.name }} Age: {{ member.age }} Email:
+          {{ member.email }}
         </li>
       </ul>
-  
-      <app-footer></app-footer>
+
+      <app-footer class="footer"></app-footer>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+      <h2>Setting Up HTTP request</h2>
+      
+      <p>This is where the observable comes into action.</p>
+      <li>http get request call</li>
+      <li>http get returns Observables</li>
+      <li>subscribe to observables</li>
+      <li>get request sent</li>
+      <li>A response is returned</li>
+      <li>Observable emits a next notification</li>
+      <li>we then process the emitted response</li>
+
+      <h1>Implementation</h1>
+      <li>First create a service using command <code>ng g service name of service</code></li>
+      <li>Inside the service, import HttpClient  class and alos add HttpClientModule to module.ts</li>
+      <li>then create a constructor in a service and pass private variable:HttpClient </li>
+      <li>now create function where you call the get method. 
+        <code> getUsersLog():Observable &lt;IToDo[]&gt; <br>
+          return this.http.get &lt;IToDo[] &gt;(this.apiUrl);<br>
+          THIS ABOVE GET METHOD RETURNS OBSERVABLES
+          <li>Now we have to subscribe it on the app component!</li>
+          <li><code>constructor(private memberData:MemberDataService, private userTodo:UsersLogService)
+            &#123; &#125;<br></code></li>
+            <li>inside ngOnIt on app.ts: <code> this.userTodo.getUsersLog().subscribe((data:IToDo[])=>&#123;
+              this.userToDos=data;
+              console.log("DATA",data);
+              &#125;)</code></li>
+           </code></li>
+
+          <h1>This data is being fetched from the API</h1>
+           <ul style="list-style-type: none; padding: 0;">
+            <li *ngFor="let todo of userToDos" style="border: 1px solid #141414; border-radius: 8px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+              <div style="background-color: #a6a5a5; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <span style="font-weight: bold;">ID:</span> {{todo.userId}} 
+                </div>
+                <div>
+                  <span style="font-weight: bold;">Task:</span> {{todo.title}} 
+                </div>
+                <div>
+                  <span style="font-weight: bold;">Status:</span> 
+                  <span [style.color]="todo.completed ? '#28a745' : '#dc3545'">
+                    {{todo.completed ? 'Completed' : 'Incomplete'}}
+                  </span>
+                </div>
+              </div>
+            </li>
+          </ul>
+          

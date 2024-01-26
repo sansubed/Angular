@@ -10,6 +10,7 @@ import { ObservableComponent } from './observable/observable.component';
 import { AllComponent } from './observable/all/all.component';
 import { FromEventComponent } from './observable/from-event/from-event.component';
 import { FooterComponent } from './footer/footer.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     BrowserModule,FormsModule,
-    AppRoutingModule
+    AppRoutingModule, HttpClientModule
   ],
   providers: [
     provideClientHydration()
