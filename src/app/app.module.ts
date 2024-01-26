@@ -9,6 +9,7 @@ import { ChildOutputDemoComponent } from './child-output-demo/child-output-demo.
 import { ObservableComponent } from './observable/observable.component';
 import { AllComponent } from './observable/all/all.component';
 import { FromEventComponent } from './observable/from-event/from-event.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FromEventComponent } from './observable/from-event/from-event.component
     ChildOutputDemoComponent,
     ObservableComponent,
     AllComponent,
-    FromEventComponent
+    FromEventComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,FormsModule,

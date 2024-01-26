@@ -1,130 +1,294 @@
 <div class="content" role="main">
   <!-- {{title | uppercase}}! this is pipe and it does is transform ther title to uppercase and then only display it -->
-  <h1>{{title | uppercase}}!</h1>
-  <h3 *ngFor='let item of users'>Names: {{item}}</h3>
-  <h2>Todo List </h2>
+  <h1>{{ title | uppercase }}!</h1>
+  <h3 *ngFor="let item of users">Names: {{ item }}</h3>
+  <h2>Todo List</h2>
   <label for="name">Type for finished status (true or false):</label>
-<input type="text" id="name" [(ngModel)]='listFilter'>
-<h1>Filter by: {{listFilter}}</h1>
-  <h3 *ngFor='let item of filteredUsers'>ID: {{item.id}}  <h2 style="color:black;">Title: {{item.title | uppercase }}</h2> <h2 style="color:tomato;">Status: {{item.completed}}</h2>
+  <input type="text" id="name" [(ngModel)]="listFilter" />
+  <h1>Filter by: {{ listFilter }}</h1>
+  <h3 *ngFor="let item of filteredUsers">
+    ID: {{ item.id }}
+    <h2 style="color: black">Title: {{ item.title | uppercase }}</h2>
+    <h2 style="color: tomato">Status: {{ item.completed }}</h2>
     <!-- this is property binding -->
-    <img [src]='item.url'
-          [title]='item.userId'
-          [style.width.px]='imageWidth'
-          [style.margin.px]='imageMargin'>
- <!-- this is iterating over the objects -->
- <!-- interpolation -> data binding -->
+    <img
+      [src]="item.url"
+      [title]="item.userId"
+      [style.width.px]="imageWidth"
+      [style.margin.px]="imageMargin"
+    />
+    <!-- this is iterating over the objects -->
+    <!-- interpolation -> data binding -->
 
- <!-- this image tag is basically looping as it is inside the h3 tag! -->
- <img src='{{dummyUrl}}'[style.width.px]="imageWidth">
-</h3>
+    <!-- this image tag is basically looping as it is inside the h3 tag! -->
+    <img src="{{ dummyUrl }}" [style.width.px]="imageWidth" />
+  </h3>
 
-<!-- click is the target event which is calling the function toggleInfo-->
-<!-- js conditional operater, when showInfo is true, display hide otherwise display show -->
-<button (click)='toggleInfo()'> {{showInfo ? 'Hide' : 'Show'}} Info
-<h1 *ngIf='showInfo'> Hello I am Interpolation and I have no quotes!<img src='{{dummyUrl}}'[style.width.px]="imageWidth"> {{dummyUrlCaption}} </h1>
-</button>
-<br><br>
+  <!-- click is the target event which is calling the function toggleInfo-->
+  <!-- js conditional operater, when showInfo is true, display hide otherwise display show -->
+  <button (click)="toggleInfo()">
+    {{ showInfo ? "Hide" : "Show" }} Info
+    <h1 *ngIf="showInfo">
+      Hello I am Interpolation and I have no quotes!<img
+        src="{{ dummyUrl }}"
+        [style.width.px]="imageWidth"
+      />
+      {{ dummyUrlCaption }}
+    </h1>
+  </button>
+  <br /><br />
 
-<h1>{{title2}}</h1>
-<h3>It is basically changing the property and displaying it at the same time in an input element<h3>
-  <!-- this is how 2 way binding is done, basically define a variable in ts side inside class  -->
-<input type="text" [(ngModel)]="name">
-<h4>My name is:  {{name}}</h4>
+  <h1>{{ title2 }}</h1>
+  <h3>
+    It is basically changing the property and displaying it at the same time in
+    an input element
+    <h3>
+      <!-- this is how 2 way binding is done, basically define a variable in ts side inside class  -->
+      <input type="text" [(ngModel)]="name" />
+      <h4>My name is: {{ name }}</h4>
 
-<h1>{{title3}}</h1>
-<p>
-  This can be used as a type : IType
-  And most importantly, this is used as the inheritance, future code reuse. ## only declarations of properties and functions yet no implementations
-</p>
+      <h1>{{ title3 }}</h1>
+      <p>
+        This can be used as a type : IType And most importantly, this is used as
+        the inheritance, future code reuse. ## only declarations of properties
+        and functions yet no implementations
+      </p>
 
-<h1> Lifecycle Hooks</h1>
-<p>This is an interface where we implement to write code when a component lifecycle event occurs</p>
-<h2>OnInit hook</h2>
-  <p>This is used to perform component initialization, retrieve data from the backend service</p>
-<h2>OnChange hook</h2>
-  <p>Perform action after change to input properties, only watches for changes to input properties, at input properties solve the issue</p>
-<h2>OnDestroy hook</h2>
-  <p>Performs cleanup</p>
-<h1>Custom Pipes</h1>
-  <p>We use PipeTranform interface. This interface has a method name: transform(value:string, character:string)
-      returning the string which is a transformed string.   
-  </p>
-<h1>Getter and Setter</h1>
-<p>Anytime when the property of get and set, this is basically like a listener and is on the ngOnInit method.<span style="font-weight: bold; font-style: italic;">This is also used to filter the list</span></p>
+      <h1>Lifecycle Hooks</h1>
+      <p>
+        This is an interface where we implement to write code when a component
+        lifecycle event occurs
+      </p>
+      <h2>OnInit hook</h2>
+      <p>
+        This is used to perform component initialization, retrieve data from the
+        backend service
+      </p>
+      <h2>OnChange hook</h2>
+      <p>
+        Perform action after change to input properties, only watches for
+        changes to input properties, at input properties solve the issue
+      </p>
+      <h2>OnDestroy hook</h2>
+      <p>Performs cleanup</p>
+      <h1>Custom Pipes</h1>
+      <p>
+        We use PipeTranform interface. This interface has a method name:
+        transform(value:string, character:string) returning the string which is
+        a transformed string.
+      </p>
+      <h1>Getter and Setter</h1>
+      <p>
+        Anytime when the property of get and set, this is basically like a
+        listener and is on the ngOnInit method.<span
+          style="font-weight: bold; font-style: italic"
+          >This is also used to filter the list</span
+        >
+      </p>
 
+      <div>
+        <h1>OnChange Hook</h1>
+        It only looks for the changes in the input properties. The nested
+        component receives information from its main component using properties.
+        For the child component to display correct information, the main
+        container must pass data as an input to the child(nested)component. The
+        nested component outputs the information back to its container by
+        emmiting events.
+        <br /><br />
+        <li>anytime it needs input data from it's container</li>
+        <li>use input decorator in the child component class</li>
+        <li>use function onchanges in the child component</li>
+        <li>
+          then use the component directive on the html side of the main
+          container
+        </li>
+        <li>
+          we can use interpolation or property binding. While property binding
+          can only used to bind the properties of the objects!
+        </li>
+      </div>
+      <h1>
+        If the nested (child) component wants to send the data out to the
+        container, it can emit an event using output decorator
+      </h1>
+      <li>
+        use output decorator in the child class and the property must be event.
+      </li>
+      <li>event is defined with an EventEmitter object</li>
+      <li>$ event passes any data associated with the generated event</li>
 
-<div>
-  <h1>OnChange Hook</h1>
-  It only looks for the changes in the input properties. The nested component receives information from its main component using properties. For the child component to
-  display correct information, the main container must pass data as an input to the child(nested)component.
-  The nested component outputs the information back to its container by emmiting events.
-  <br><br>
-  <li>anytime it needs input data from it's container</li>
-  <li>use input decorator in the child component class</li>
-  <li>use function onchanges in the child component</li>
-  <li> then use the component directive on the html side of the main container</li>
- <li>we can use interpolation or property binding. While property binding can only used to bind the properties of the objects!</li>
-  </div>
-  <h1> If the nested (child) component wants to send the data out to the container, it can emit an event using output decorator</h1>
-  <li>use output decorator in the child class and the property must be event.</li>
-  <li>event is defined with an EventEmitter object</li>
-  <li>$ event passes any data associated with the generated event</li>
+      <!-- <app-child-comp data={{data}} notify="onClick($event)"></app-child-comp> -->
 
-  
+      <!-- this is child component  since data is a string pass in double quotes-->
+      <!-- <app-child-comp [data]="data"></app-child-comp> -->
 
-<!-- <app-child-comp data={{data}} notify="onClick($event)"></app-child-comp> -->
-
-
-
-<!-- this is child component  since data is a string pass in double quotes--> 
-<!-- <app-child-comp [data]="data"></app-child-comp> -->
-
-<!-- alternatively: interpolation can also be use here just the syntax is different
+      <!-- alternatively: interpolation can also be use here just the syntax is different
 <app-child-comp data={{data}}></app-child-comp>
 <button (click) ="updateData()">CHANGE</button>
 <app-child-comp [item]="inputData"></app-child-comp> -->
 
-<!-- You can achieve line 84 to 86 in single line []-> passing data , ()-> when receiving data-->
-<app-child-comp data={{data}} [item]="inputData"></app-child-comp>
-<button (click) ="updateData()">CHANGE</button>
+      <!-- You can achieve line 84 to 86 in single line []-> passing data , ()-> when receiving data-->
+      <app-child-comp data="{{ data }}" [item]="inputData"></app-child-comp>
 
-<h1>{{notify}}</h1>
-<!-- ChildToParentOutputEvent -> this will call the childToParentOutput($event) but here you pass the event as the argument-->
-<app-child-comp-output (childToParentOutputEvent)="childToParentOutput($event)"></app-child-comp-output>
+      <button (click)="updateData()">CHANGE</button>
 
+      <h1>{{ notify }}</h1>
+      <!-- ChildToParentOutputEvent -> this will call the childToParentOutput($event) but here you pass the event as the argument-->
+      <app-child-comp-output
+        (childToParentOutputEvent)="childToParentOutput($event)"
+      ></app-child-comp-output>
 
+      <app-child-output-demo (updateValueEvent)="updateValue($event)">
+      </app-child-output-demo>
+      <div
+        style="
+          max-width: 400px;
+          margin: 20px auto;
+          padding: 20px;
+          background-color: #f4f4f4;
+          border-radius: 8px;
+          text-align: center;
+        "
+      >
+        <p>I am the parent component:</p>
+        <h2 style="color: #4caf50">{{ value }}</h2>
+      </div>
 
-  <app-child-output-demo (updateValueEvent)="updateValue($event)"> </app-child-output-demo>
-  <div style="max-width: 400px; margin: 20px auto; padding: 20px; background-color: #f4f4f4; border-radius: 8px; text-align: center;">
-    <p>I am the parent component:</p>
-    <h2 style="color: #4CAF50;">{{value}}</h2>
-  </div>
+      <h1>Lets learn RxJs now:</h1>
+      <h2>
+        Reactive Extensions For JS: external library anything can use: React,
+        Angular
+      </h2>
+      <p
+        style="
+          color: #caa8a4;
+          font-size: 20px;
+          font-weight: bold;
+          margin-bottom: 20px;
+        "
+      >
+        Basically, the way of observing and reacting to the data events as they
+        flow like river in an app.<br /><br />
+        <li>
+          Observables: Observables acts as data stream, continuously emits data.
+          To use observables you have to subscribe to it. Also you can choose
+          the data you want that being emmitted.
+        </li>
+        <li>Can be Asyn or Syn</li>
+        <li>this returns the stream of data (data ------ data ------ data)</li>
+      </p>
 
-<h1>Lets learn RxJs now:</h1>
-<h2>Reactive Extensions For JS: external library anything can use: React, Angular</h2>
-<p style="color: #caa8a4; font-size: 20px; font-weight: bold; margin-bottom: 20px;">
-Basically, the way of observing and reacting to the data events as they flow like river in an app.<br><br>
-<li>Observables: Observables acts as data stream, continuously emits data. To use observables you have to subscribe to it. Also you can choose the data you want that being emmitted.</li>
-<li>Can be Asyn or Syn</li>
-<li>this returns the stream of data (data ------ data ------ data)</li>
-  </p>
- 
-  Observable Streams:
-  <li>User Input (Button click Event)</li>
-    <li> HTTP Request</li>
-    <li>Array and Object</li>
-<br>
-  Observable Handles: (when you subscribe)
-  <li>Data</li>
-  <li>Error</li>
-  <li>Completion Event</li>  
-  <code>.subscribe(<br>
-    (data)=>console.log(data),<br>
-    (error)=>console.log(error),<br>
-    ()=>console.log("Complete"),<br>)</code>
-<div>'all' is the child of Observable component</div>
+      Observable Streams:
+      <li>User Input (Button click Event)</li>
+      <li>HTTP Request</li>
+      <li>Array and Object</li>
+      <br />
+      Observable Handles: (when you subscribe)
+      <li>Data</li>
+      <li>Error</li>
+      <li>Completion Event</li>
+      <code
+        >.subscribe(<br />
+        (data)=>console.log(data),<br />
+        (error)=>console.log(error),<br />
+        ()=>console.log("Complete"),<br />)</code
+      >
+      <div>'all' is the child of Observable component</div>
 
-  <app-observable></app-observable>
-  <app-all></app-all>
-  <app-from-event></app-from-event>
+      <div>
+        Observable is a part of the RxJs library that allows you to subscribe it
+        and get notification and react to that change. Observable is like a data
+        stream.
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          background-color: #f2f2f2;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <!-- Box for Observable -->
+        <div
+          style="
+            flex: 1;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            box-sizing: border-box;
+          "
+        >
+          <h3 style="color: #4caf50; margin-bottom: 10px">Observable</h3>
+          <ul>
+            <li>Declarative</li>
+            <li>Unicast (each subscriber gets its own execution)</li>
+            <li>Immutable</li>
+            <li>Lazily executed (only when subscribed)</li>
+          </ul>
+        </div>
+
+        <!-- Box for Subject -->
+        <div
+          style="
+            flex: 1;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            margin-left: 20px;
+            box-sizing: border-box;
+          "
+        >
+          <h3 style="color: #2196f3; margin-bottom: 10px">Subject</h3>
+          <ul>
+            <li>Imperative</li>
+            <li>
+              Multicast (it maintains a list of subscribers and notifies them
+              when the value is emmitted.)
+            </li>
+            <li>Mutable</li>
+            <li>Eagerly executed (when events occur)</li>
+          </ul>
+        </div>
+      </div>
+
+      <app-observable></app-observable>
+      <app-all></app-all>
+      <app-from-event></app-from-event>
+
+      <h1>Service in Angular</h1>
+      <li>First <code>ng g service services/footer in your terminal</code></li>
+      <li> on your service.ts file create a method where you have array of objects</li>
+      <li> create a constructor inside the component.ts you would like to use and import the service, eg: 
+       <br> <code>
+          members:any; //this has to be the interface type for the data that is coming<br>
+        constructor(private memberData:MemberDataService)&#123;<br>
+        console.warn("Member data", memberData.members());<br>
+        this.members=memberData.members();&#125;<br>
+        </code> </li>
+        <h2>Alternatively,</h2>
+        These portion of code could be placed in the ngOnInit method:
+        <code>ngOnInit(): void &#123;<br>
+          console.log('In OnInit');<br>
+          this.listFilter = 'true';<br>
+          console.warn("Member data", this.memberData.getMembers());<br>
+          this.members=this.memberData.getMembers();<br>
+          &#123;</code>
+      
+      <li>Now loop over the objects in component.html<br>
+      <code><li *ngFor="let member of members">
+        Name: &#123;&#123;member.name&#125; 
+        Age: &#123;&#123;member.age&#125;
+        Email: &#123;&#123;member.email&#125;
+      </li></code></li>
+      <h1>Demonstration of service class in app.component and footer.component</h1>
+      <ul>
+        <li *ngFor="let member of members">
+        Name:  {{ member.name}}
+        Age: {{ member.age}}
+        Email: {{ member.email}}
+        </li>
+      </ul>
+  
+      <app-footer></app-footer>

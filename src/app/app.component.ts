@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ITodoList } from './app';
+import {MemberDataService} from './service/member-data.service';
+import { IUserDesp } from './userDesp';
 
 @Component({
   selector: 'app-root',
@@ -86,11 +88,7 @@ export class AppComponent implements OnInit {
   toggleInfo(): void {
     this.showInfo = !this.showInfo;
   }
-  //this is the method in the OnInit interface
-  ngOnInit(): void {
-    console.log('In OnInit');
-    this.listFilter = 'true';
-  }
+ 
 
   data:string="hello";
 inputData:number=1;
@@ -117,5 +115,29 @@ console.warn(newValue);
 this.value = newValue;
 }
 
+
+// memberData=[
+//   {name:'Santona', email:'santona@test.com'},
+//   {name:'Sam', email:'sam@test.com'},
+//   {name:'Peter', email:'peter@test.com'},
+//   {name:'John', email:'john@test.com'},
+// ]
+
+//this is to use the service
+
+members: IUserDesp[] = []; //this has to be the interface type for the data that is coming
+constructor(private memberData:MemberDataService)
+
+{
+// console.warn("Member data", memberData.getMembers());
+// this.members=memberData.getMembers();
+}
+ //this is the method in the OnInit interface
+ ngOnInit(): void {
+  console.log('In OnInit');
+  this.listFilter = 'true';
+  console.warn("Member data", this.memberData.getMembers());
+  this.members=this.memberData.getMembers();
+}
 }
 
