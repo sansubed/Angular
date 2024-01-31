@@ -11,6 +11,7 @@ import { AllComponent } from './observable/all/all.component';
 import { FromEventComponent } from './observable/from-event/from-event.component';
 import { FooterComponent } from './footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
+import { LinqQueryComponent } from './linq-query/linq-query.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {HttpClientModule} from '@angular/common/http';
     ObservableComponent,
     AllComponent,
     FromEventComponent,
-    FooterComponent
+    FooterComponent,
+    LinqQueryComponent
   ],
   imports: [
     BrowserModule,FormsModule,

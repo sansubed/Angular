@@ -357,3 +357,40 @@
             </li>
           </ul>
           
+          <h1>Lets study LINQ</h1>
+          <h2>Language Integrated Query</h2>
+          <p>Data presented inside an array or collection, very difficult to represent.</p>
+          <div>LINQ: Uniform (Same) query to retrieve data from different sources.
+            <li>Object Collection -> LINQ to Object</li>
+            <li> ADO.Net DataSet -> LINQ to DataSet</li>
+            <li>XML Document -> LINQ to XML</li>
+            <li>Entity Framework -> LINQ to Entities</li>
+            <li>LINQ<br><br>
+          <div style="color:rgb(102, 155, 110)">LINQ query gets executed to talk to data source and then we recieve the result.
+            Here, the LINQ query always returns the object.
+          </div>
+          <p>IEnumerable is an interface that represents the collection of elements that can be 
+            enumerated sequentially. 
+            <li>this interface has a method named GetEnumerator() that has a returns 'IEnumerator' object </li>
+          </p>
+          <p>A piece of LINQ query for your understanding<br>
+          <code> foreach (var employee in developers.Where(NameStartsWithS))<br>
+            &#123;Console.WriteLine(employee.Name); &#125;
+            <br><br>
+              
+                private static bool NameStartsWithS(Employee employee)<br>
+                &#123;return employee.Name.StartsWith("S");&#125;</code><br><br>
+                In this section of the code we are creating a function and then using it!
+
+                The same thing can be done without creating the function:<br> </p>
+                <h1>Alternatively, you can use the keyword 'delegate()' and inside parenthesis write your function</h1>
+                <code>foreach (var employee in developers.Where(delegate(Employee employee)
+                  &#123;return employee.Name.StartsWith("S");&#125;))<br>
+                  &#123;Console.WriteLine(employee.Name); &#125;<br>
+                  </code>
+
+                  <h1>Finally, we can use the Lambda expression to make it easier</h1>
+                  <code>foreach (var employee in developers.Where(employee => employee.Name.StartsWith("S")))<br>&#123;Console.WriteLine(employee.Name); &#125;<br></code>
+             <h1>Query syntax starts with from</h1>
+
+<app-linq-query></app-linq-query>

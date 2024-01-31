@@ -1,4 +1,4 @@
-export class IUserDesp{
+export interface IUserDesp{
    "name":string;
     "age":number;
     "email":string;
