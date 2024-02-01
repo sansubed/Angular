@@ -7,6 +7,39 @@
             <li>Get a count of that list.</li>
         </ul>
     </div>
-    
+   
 
 </div>
+<p style="max-width: 100%; height: auto; background-color: darkcyan;">
+   
+    <li >Projection operator: Using a select, you can transform cars into strings or cars into numbers or into any object or value as required. Select(get value from collection) ans selectmany (value from collection of collection)</li>
+    <li>Filtering Operator: where and OfType</li>
+    <li>Grouping Operator: Groupby and ToLookUp</li>
+    <li>Sorting Operators: OrderBy, OrverByAscending, ThenBy, ThenByDescending</li>
+
+   <u> We have two ways to do the task:</u>
+   <u>First is to use the LINQ query and the other is LINQ method </u> 
+    <img src="https://devopedia.org/images/article/438/6652.1668923247.png" style="max-width: 100%; height: auto;" />
+</p>
+<div style="display: flex; justify-content: space-between;">
+
+    <div style="flex: 1; border: 1px solid #ccc; padding: 10px;background-color:antiquewhite; margin-right: 10px;">
+        <strong><u>LINQ Query Syntax:</u></strong><br>
+       <li>
+        LINQ's query syntax is similar to that in SQL.
+       </li>
+       <li>Query syntax is more readable. Intermediate variables using the let keyword can be created with query syntax.</li>
+    <li>However, operations that return singleton numeric values (such as Min, Sum, etc.) must use the method syntax. It's also permitted to mix the two syntaxes, that is, a query expression enclosed in parentheses and followed by a method call. An example is (from num in numbers where num &lt; 3 select num).Count()</li>
+    </div>
+
+    <div style="flex: 1; border: 1px solid #ccc; padding: 10px; background-color:antiquewhite">
+        <strong><u>LINQ Method Syntax:</u></strong><br>
+       <li>In LINQ's method syntax, operations appear as methods that are called on the data source. Method calls are chained.
+       </li>
+       <li style="color: tomato">In fact, queries are transformed into methods before being compiled</li>
+       <li>Both syntaxes result in a query object that's typically a collection of type IEnumerable&lt;T&gt;. The query object doesn't contain the results. Results are produced only when the query is executed.</li>
+    </div>
+
+</div>
+
+
